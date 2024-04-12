@@ -1,0 +1,30 @@
+SELECT MAX(WEIGHT) FROM PARTS;
+
+SELECT MAX(WEIGHT) FROM PARTS;    // TODAY DAY
+
+SELECT SYSDATE() FROM DUAL;    // DATE AND TIME
+
+select SNAME,LENGTH(SNAME) from SUPPLIER;   // LENGTH OF SNAME
+
+SELECT REPLACE (SNAME,'I','o') FROM SUPPLIER;  // REPLACE I WITH o
+
+SELECT LPAD(SNAME,25,' ') FROM SUPPLIER;
+
+SELECT UPPER(SNAME) FROM SUPPLIER;
+
+SELECT UPPER(SNAME) FROM SUPPLIER;
+
+
+COUNT(*) returns the count of all rows in the table, whereas COUNT() is used with Column_Name passed as an argument and counts the number of non-NULL values in a column that is given as an argument.
+
+SELECT STATUS,COUNT(*) FROM SUPPLIER GROUP BY(STATUS);
+
+
+ALTER TABLE EMP ADD COLUMN EMPNO INT;               /// TO ADD COLUMN IN TABLE
+
+ALTER TABLE <table_name>
+DROP COLUMN <column_name>;                          // TO DELETE COLUMN IN TABLE
+
+
+
+SELECT COUNT(EMPNO), EMPNO FROM EMP1 GROUP BY EMPNO DELETE EMPNO HAVING COUNT(EMPNO)>1;

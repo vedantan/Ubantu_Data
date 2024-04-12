@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="click me!" onclick="f1()">
+    <h3 id="h3"></h3>
+
+    <script>
+        function f1() {
+            window.alert("hi i am important")
+        }
+    </script>
+
+    <script>
+        console.log("hi")
+        setInterval(f2,1000)
+        console.log("bye")
+
+        let c = document.getElementById('h3')
+        let counter =0;
+        function f2(){
+            counter = counter+1;
+            c.innerText=counter
+
+        }
+    </script>
+</body>
+</html>

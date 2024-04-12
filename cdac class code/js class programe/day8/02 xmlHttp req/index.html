@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <center>
+
+        <button onclick="fun()">Get Data</button>
+
+        <table border="1px">
+            <thead>
+                <td>Id</td>
+                <td>Name</td>
+                <td>Email</td>
+                <td>Avatar</td>
+            </thead>
+            <tbody id="b1">
+                
+            </tbody>
+        </table>
+    </center>
+
+
+
+    <script>
+
+        function fun() {
+
+
+            let getData = new XMLHttpRequest();
+            let b = document.getElementById('b1')
+    
+            getData.onreadystatechange = function () {
+                if(getData.status == 200 && getData.readyState == 4){
+    
+                let objdata = JSON.parse(getData.responseText)
+    
+                console.log(objdata.data)
+                console.log(objdata.data.length)
+    
+                    for (let i = 0; i < objdata.data.length; i++) {
+                        let element = objdata.data[i];
+                        
+                        let row = `<tr>
+                                    <td>${objdata.data[i].id}</td>
+                                    <td>${objdata.data[i].first_name}</td>
+                                    <td>${objdata.data[i].email}</td>
+                                    <td><img src=${objdata.data[i].avatar} /></td>
+                                </tr>`
+        
+                        b.innerHTML = b.innerHTML + row
+                    }
+    
+                }
+            }
+    
+            getData.open('GET',"https://reqres.in/api/users")
+            getData.send()
+        }
+
+
+        
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <center>
+        <table border="1px">
+            <thead>
+                <td>Meal Id</td>
+                <td>Meal Name</td>
+                <td>Receipe</td>
+                <td>Image</td>
+            </thead>
+
+            <tbody id="b1">
+               
+            </tbody>
+        </table>
+    </center>
+
+
+
+    <script>
+
+        let a = document.getElementById('b1')
+
+
+        let getdata = new XMLHttpRequest()
+
+        getdata.onreadystatechange = function () {
+          
+
+            if(getdata.status == 200 && getdata.readyState == 4){
+
+
+                console.log('a')
+                // console.log(getdata.responseText)
+                let data = JSON.parse(getdata.responseText)
+              
+                let dataf = data.meals;
+                console.log(dataf)
+
+                for (let i = 0; i < dataf.length; i++) {
+                    const element = dataf[i];
+                    
+                    let row = ` <tr>
+                                     <td>${dataf[i].idMeal}</td>
+                                     <td>${dataf[i].strMeal}</td>
+                                     <td>${dataf[i].strInstructions}</td>
+                                     <td><img src=${dataf[i].strMealThumb} width="100px" height="100px"/></td>
+                               </tr>`
+    
+                     a.innerHTML = a.innerHTML + row          
+                }
+
+                
+            }
+       
+        }
+
+        getdata.open('GET','https://www.themealdb.com/api/json/v1/1/search.php?s=cake')
+
+        getdata.send()
+
+    </script>
+</body>
+</html>
+
+
+
+

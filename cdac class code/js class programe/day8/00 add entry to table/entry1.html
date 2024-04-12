@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <table style="border: 1px solid black;width: 300px">
+            <thead>
+                <td>Sr.No</td>
+                <td>Name</td>
+                <td>Pic</td>
+
+            </thead>
+
+            <tbody id="b1"></tbody>
+        </table>
+    </center>
+
+
+    <script>
+
+
+        let a = document.getElementById('b1')
+
+        let person = {
+            Sr_no:"1",
+            Name:"sachin",
+            img:"https://reqres.in/img/faces/1-image.jpg"
+        }
+
+        let row = 
+
+        `<tr>
+                <td>${person.Sr_no}</td>
+                <td>${person.Name}</td>
+                <td><img src=${person.img} height="70px" width="70px"/> </td>
+
+        </tr>`
+
+        a.innerHTML = row
+
+        
+    </script>
+</body>
+</html>

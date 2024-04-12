@@ -1,0 +1,742 @@
+show tables;
+
+
+mysql -u root -p
+
+
+create user D5_Ved_83794@localhost identified by 123456;
+
+
+------------------------------------------------------------------------------------------------------------
+						EXERCISE 1
+------------------------------------------------------------------------------------------------------------
+
+D5_Ved_83794>show databases;
++--------------------+
+| Database           |
++--------------------+
+| Exercise1          |
+| information_schema |
+| performance_schema |
++--------------------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>use Exercise1;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+D5_Ved_83794>show tables;
++---------------------+
+| Tables_in_Exercise1 |
++---------------------+
+| PARTS               |
+| PROJECTS            |
+| SDEPT               |
+| SEMP                |
+| SPJ                 |
+| SUPPLIER            |
++---------------------+
+6 rows in set (0.00 sec)
+
+D5_Ved_83794>select * from SUPPLIER;
++------+-------+--------+--------+
+| S#   | SNAME | STATUS | CITY   |
++------+-------+--------+--------+
+| S1   | VED   | YES    | PUNE   |
+| S2   | AKS   | YES    | LATUR  |
+| S3   | VIN   | NO     | NANDED |
++------+-------+--------+--------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>select s# , Sname from SUPPLIER;
+    -> SELECT S# , SNAME FROM SUPPLIER;
+    -> SELECT SNAME FROM SUPPLIER;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SELECT S
+SELECT SNAME FROM SUPPLIER' at line 2
+D5_Ved_83794>^C
+D5_Ved_83794>SELECT SNAME FROM SUPPLIER;
++-------+
+| SNAME |
++-------+
+| VED   |
+| AKS   |
+| VIN   |
++-------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT S# FROM SUPPLIER;
+    -> ^C
+D5_Ved_83794>SELECT `S#` FROM SUPPLIER;
++------+
+| S#   |
++------+
+| S1   |
+| S2   |
+| S3   |
++------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT `S#` , SNAME FROM SUPPLIER;
++------+-------+
+| S#   | SNAME |
++------+-------+
+| S1   | VED   |
+| S2   | AKS   |
+| S3   | VIN   |
++------+-------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>SHOW TABLES;
++---------------------+
+| Tables_in_Exercise1 |
++---------------------+
+| PARTS               |
+| PROJECTS            |
+| SDEPT               |
+| SEMP                |
+| SPJ                 |
+| SUPPLIER            |
++---------------------+
+6 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT * FROM PARTS;
++------+---------+-------+--------+--------+
+| P#   | PNAME   | COLOR | WEIGHT | CITY   |
++------+---------+-------+--------+--------+
+| P1   | SCREWS  | BROWN |     10 | PUNE   |
+| P2   | BEARING | BLACK |     15 | LATUR  |
+| P3   | GEARS   | WHITE |      5 | NANDED |
++------+---------+-------+--------+--------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT PNAME,COLOR FROM PARTS WHERE CITY=LATUR;
+ERROR 1054 (42S22): Unknown column 'LATUR' in 'where clause'
+D5_Ved_83794>SELECT PNAME FROM PARTS;
++---------+
+| PNAME   |
++---------+
+| SCREWS  |
+| BEARING |
+| GEARS   |
++---------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT PNAME,COLOR FROM PARTS;
++---------+-------+
+| PNAME   | COLOR |
++---------+-------+
+| SCREWS  | BROWN |
+| BEARING | BLACK |
+| GEARS   | WHITE |
++---------+-------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT PNAME,COLOR FROM PARTS WHERE CITY=NANDED;
+ERROR 1054 (42S22): Unknown column 'NANDED' in 'where clause'
+D5_Ved_83794>SELECT PNAME,COLOR FROM PARTS WHERE CITY='NANDED';
++-------+-------+
+| PNAME | COLOR |
++-------+-------+
+| GEARS | WHITE |
++-------+-------+
+1 row in set (0.00 sec)
+
+D5_Ved_83794>SELECT * FROM SUPPLIERS;
+ERROR 1146 (42S02): Table 'Exercise1.SUPPLIERS' doesn't exist
+D5_Ved_83794>SELECT * FROM SUPPLIER;
++------+-------+--------+--------+
+| S#   | SNAME | STATUS | CITY   |
++------+-------+--------+--------+
+| S1   | VED   | YES    | PUNE   |
+| S2   | AKS   | YES    | LATUR  |
+| S3   | VIN   | NO     | NANDED |
++------+-------+--------+--------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT * FROM SUPPLIER WHERE CITY='LATUR';
++------+-------+--------+-------+
+| S#   | SNAME | STATUS | CITY  |
++------+-------+--------+-------+
+| S2   | AKS   | YES    | LATUR |
++------+-------+--------+-------+
+1 row in set (0.00 sec)
+
+D5_Ved_83794>SELECT * FROM SUPPLIER WHERE CITY=PUNE OR CITY=NANDED;
+ERROR 1054 (42S22): Unknown column 'PUNE' in 'where clause'
+D5_Ved_83794>SELECT * FROM SUPPLIER WHERE CITY='PUNE' OR CITY='NANDED';
++------+-------+--------+--------+
+| S#   | SNAME | STATUS | CITY   |
++------+-------+--------+--------+
+| S1   | VED   | YES    | PUNE   |
+| S3   | VIN   | NO     | NANDED |
++------+-------+--------+--------+
+2 rows in set (0.01 sec)
+
+D5_Ved_83794>SELECT * FROM PROJECTS;
++------+----------+--------+
+| J#   | JNAME    | CITY   |
++------+----------+--------+
+| J1   | BUILDING | PUNE   |
+| J2   | SHOP     | LATUR  |
+| J3   | HOME     | NANDED |
++------+----------+--------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT * FROM PARTS;
++------+---------+-------+--------+--------+
+| P#   | PNAME   | COLOR | WEIGHT | CITY   |
++------+---------+-------+--------+--------+
+| P1   | SCREWS  | BROWN |     10 | PUNE   |
+| P2   | BEARING | BLACK |     15 | LATUR  |
+| P3   | GEARS   | WHITE |      5 | NANDED |
++------+---------+-------+--------+--------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT * FROM PARTS WHERE WEIGHT BETWEEN 10 AND 15;
++------+---------+-------+--------+-------+
+| P#   | PNAME   | COLOR | WEIGHT | CITY  |
++------+---------+-------+--------+-------+
+| P1   | SCREWS  | BROWN |     10 | PUNE  |
+| P2   | BEARING | BLACK |     15 | LATUR |
++------+---------+-------+--------+-------+
+2 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT * FROM SUPPLIER;
++------+-------+--------+--------+
+| S#   | SNAME | STATUS | CITY   |
++------+-------+--------+--------+
+| S1   | VED   | YES    | PUNE   |
+| S2   | AKS   | YES    | LATUR  |
+| S3   | VIN   | NO     | NANDED |
++------+-------+--------+--------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT * FROM SUPPLIER WHERE STATUS=YES;
+ERROR 1054 (42S22): Unknown column 'YES' in 'where clause'
+D5_Ved_83794>SELECT * FROM SUPPLIER WHERE STATUS='YES';
++------+-------+--------+-------+
+| S#   | SNAME | STATUS | CITY  |
++------+-------+--------+-------+
+| S1   | VED   | YES    | PUNE  |
+| S2   | AKS   | YES    | LATUR |
++------+-------+--------+-------+
+2 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT CITY FROM SUPPLIER;
++--------+
+| CITY   |
++--------+
+| PUNE   |
+| LATUR  |
+| NANDED |
++--------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT WEIGHT,WEIGHT/1000,WEIGHT*1000 FROM PARTS;
++--------+-------------+-------------+
+| WEIGHT | WEIGHT/1000 | WEIGHT*1000 |
++--------+-------------+-------------+
+|     10 |        0.01 |       10000 |
+|     15 |       0.015 |       15000 |
+|      5 |       0.005 |        5000 |
++--------+-------------+-------------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT WEIGHT,WEIGHT/1000 MILLIGRAM ,WEIGHT*1000 KILOGRAM FROM PARTS;
++--------+-----------+----------+
+| WEIGHT | MILLIGRAM | KILOGRAM |
++--------+-----------+----------+
+|     10 |      0.01 |    10000 |
+|     15 |     0.015 |    15000 |
+|      5 |     0.005 |     5000 |
++--------+-----------+----------+
+3 rows in set (0.00 sec)
+
+
+--------------------------------------------------------------------------------------------------------
+						EXERCISE 2
+--------------------------------------------------------------------------------------------------------
+
+
+D5_Ved_83794>show databases;
++--------------------+
+| Database           |
++--------------------+
+| Exercise1          |
+| information_schema |
+| performance_schema |
++--------------------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>use Exercise1;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+D5_Ved_83794>show tables;
++---------------------+
+| Tables_in_Exercise1 |
++---------------------+
+| PARTS               |
+| PROJECTS            |
+| SDEPT               |
+| SEMP                |
+| SPJ                 |
+| SUPPLIER            |
++---------------------+
+6 rows in set (0.00 sec)
+
+D5_Ved_83794>select * from SUPPLIER;
++------+-------+--------+--------+
+| S#   | SNAME | STATUS | CITY   |
++------+-------+--------+--------+
+| S1   | VED   | YES    | PUNE   |
+| S2   | AKS   | YES    | LATUR  |
+| S3   | VIN   | NO     | NANDED |
++------+-------+--------+--------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>select s# , Sname from SUPPLIER;
+    -> SELECT S# , SNAME FROM SUPPLIER;
+    -> SELECT SNAME FROM SUPPLIER;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SELECT S
+SELECT SNAME FROM SUPPLIER' at line 2
+D5_Ved_83794>^C
+D5_Ved_83794>SELECT SNAME FROM SUPPLIER;
++-------+
+| SNAME |
++-------+
+| VED   |
+| AKS   |
+| VIN   |
++-------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT S# FROM SUPPLIER;
+    -> ^C
+D5_Ved_83794>SELECT `S#` FROM SUPPLIER;
++------+
+| S#   |
++------+
+| S1   |
+| S2   |
+| S3   |
++------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT `S#` , SNAME FROM SUPPLIER;
++------+-------+
+| S#   | SNAME |
++------+-------+
+| S1   | VED   |
+| S2   | AKS   |
+| S3   | VIN   |
++------+-------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>SHOW TABLES;
++---------------------+
+| Tables_in_Exercise1 |
++---------------------+
+| PARTS               |
+| PROJECTS            |
+| SDEPT               |
+| SEMP                |
+| SPJ                 |
+| SUPPLIER            |
++---------------------+
+6 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT * FROM PARTS;
++------+---------+-------+--------+--------+
+| P#   | PNAME   | COLOR | WEIGHT | CITY   |
++------+---------+-------+--------+--------+
+| P1   | SCREWS  | BROWN |     10 | PUNE   |
+| P2   | BEARING | BLACK |     15 | LATUR  |
+| P3   | GEARS   | WHITE |      5 | NANDED |
++------+---------+-------+--------+--------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT PNAME,COLOR FROM PARTS WHERE CITY=LATUR;
+ERROR 1054 (42S22): Unknown column 'LATUR' in 'where clause'
+D5_Ved_83794>SELECT PNAME FROM PARTS;
++---------+
+| PNAME   |
++---------+
+| SCREWS  |
+| BEARING |
+| GEARS   |
++---------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT PNAME,COLOR FROM PARTS;
++---------+-------+
+| PNAME   | COLOR |
++---------+-------+
+| SCREWS  | BROWN |
+| BEARING | BLACK |
+| GEARS   | WHITE |
++---------+-------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT PNAME,COLOR FROM PARTS WHERE CITY=NANDED;
+ERROR 1054 (42S22): Unknown column 'NANDED' in 'where clause'
+D5_Ved_83794>SELECT PNAME,COLOR FROM PARTS WHERE CITY='NANDED';
++-------+-------+
+| PNAME | COLOR |
++-------+-------+
+| GEARS | WHITE |
++-------+-------+
+1 row in set (0.00 sec)
+
+D5_Ved_83794>SELECT * FROM SUPPLIERS;
+ERROR 1146 (42S02): Table 'Exercise1.SUPPLIERS' doesn't exist
+D5_Ved_83794>SELECT * FROM SUPPLIER;
++------+-------+--------+--------+
+| S#   | SNAME | STATUS | CITY   |
++------+-------+--------+--------+
+| S1   | VED   | YES    | PUNE   |
+| S2   | AKS   | YES    | LATUR  |
+| S3   | VIN   | NO     | NANDED |
++------+-------+--------+--------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT * FROM SUPPLIER WHERE CITY='LATUR';
++------+-------+--------+-------+
+| S#   | SNAME | STATUS | CITY  |
++------+-------+--------+-------+
+| S2   | AKS   | YES    | LATUR |
++------+-------+--------+-------+
+1 row in set (0.00 sec)
+
+D5_Ved_83794>SELECT * FROM SUPPLIER WHERE CITY=PUNE OR CITY=NANDED;
+ERROR 1054 (42S22): Unknown column 'PUNE' in 'where clause'
+D5_Ved_83794>SELECT * FROM SUPPLIER WHERE CITY='PUNE' OR CITY='NANDED';
++------+-------+--------+--------+
+| S#   | SNAME | STATUS | CITY   |
++------+-------+--------+--------+
+| S1   | VED   | YES    | PUNE   |
+| S3   | VIN   | NO     | NANDED |
++------+-------+--------+--------+
+2 rows in set (0.01 sec)
+
+D5_Ved_83794>SELECT * FROM PROJECTS;
++------+----------+--------+
+| J#   | JNAME    | CITY   |
++------+----------+--------+
+| J1   | BUILDING | PUNE   |
+| J2   | SHOP     | LATUR  |
+| J3   | HOME     | NANDED |
++------+----------+--------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT * FROM PARTS;
++------+---------+-------+--------+--------+
+| P#   | PNAME   | COLOR | WEIGHT | CITY   |
++------+---------+-------+--------+--------+
+| P1   | SCREWS  | BROWN |     10 | PUNE   |
+| P2   | BEARING | BLACK |     15 | LATUR  |
+| P3   | GEARS   | WHITE |      5 | NANDED |
++------+---------+-------+--------+--------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT * FROM PARTS WHERE WEIGHT BETWEEN 10 AND 15;
++------+---------+-------+--------+-------+
+| P#   | PNAME   | COLOR | WEIGHT | CITY  |
++------+---------+-------+--------+-------+
+| P1   | SCREWS  | BROWN |     10 | PUNE  |
+| P2   | BEARING | BLACK |     15 | LATUR |
++------+---------+-------+--------+-------+
+2 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT * FROM SUPPLIER;
++------+-------+--------+--------+
+| S#   | SNAME | STATUS | CITY   |
++------+-------+--------+--------+
+| S1   | VED   | YES    | PUNE   |
+| S2   | AKS   | YES    | LATUR  |
+| S3   | VIN   | NO     | NANDED |
++------+-------+--------+--------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT * FROM SUPPLIER WHERE STATUS=YES;
+ERROR 1054 (42S22): Unknown column 'YES' in 'where clause'
+D5_Ved_83794>SELECT * FROM SUPPLIER WHERE STATUS='YES';
++------+-------+--------+-------+
+| S#   | SNAME | STATUS | CITY  |
++------+-------+--------+-------+
+| S1   | VED   | YES    | PUNE  |
+| S2   | AKS   | YES    | LATUR |
++------+-------+--------+-------+
+2 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT CITY FROM SUPPLIER;
++--------+
+| CITY   |
++--------+
+| PUNE   |
+| LATUR  |
+| NANDED |
++--------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT WEIGHT,WEIGHT/1000,WEIGHT*1000 FROM PARTS;
++--------+-------------+-------------+
+| WEIGHT | WEIGHT/1000 | WEIGHT*1000 |
++--------+-------------+-------------+
+|     10 |        0.01 |       10000 |
+|     15 |       0.015 |       15000 |
+|      5 |       0.005 |        5000 |
++--------+-------------+-------------+
+3 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT WEIGHT,WEIGHT/1000 MILLIGRAM ,WEIGHT*1000 KILOGRAM FROM PARTS;
++--------+-----------+----------+
+| WEIGHT | MILLIGRAM | KILOGRAM |
++--------+-----------+----------+
+|     10 |      0.01 |    10000 |
+|     15 |     0.015 |    15000 |
+|      5 |     0.005 |     5000 |
++--------+-----------+----------+
+3 rows in set (0.00 sec)
+
+
+--------------------------------------------------------------------------------------------------------
+						ASSIGNMENT 1
+--------------------------------------------------------------------------------------------------------
+
+D5_Ved_83794>CREATE TABLE CUSTOMERS(
+    -> CNUMINT(4),
+    -> CNAMEVARCHAR(10),
+    -> CITY VARCHAR(10),
+    -> RATINGINT(4),
+    -> Snum INT(4),
+    -> FOREIGN KEY (Snum) REFERENCES SALESPEOPLE(Snum)
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(4),
+CNAMEVARCHAR(10),
+CITY VARCHAR(10),
+RATINGINT(4),
+Snum INT(4),
+FOREIGN KEY ' at line 2
+D5_Ved_83794>CREATE TABLE CUSTOMERS( CNUMINT(4), CNAMEVARCHAR(10), CITY VARCHAR(10), RATINGINT(4), Snum INT(4), FOREIGN KEY (Snum) REFERENCES SALESPEOPLE(Snum) );^C
+D5_Ved_83794>CREATE TABLE CUSTOMERS(
+    -> CNUMINT(4),
+    -> CNAMEVARCHAR(10),
+    -> CITY VARCHAR(10),
+    -> RATINGINT(4),
+    -> Snum INT(4),
+    -> FOREIGN KEY (Snum) REFERENCES SALESPEOPLE(Snum)
+    -> );^C
+D5_Ved_83794>CREATE TABLE CUSTOMERS(
+    -> CNUM INT(4),
+    -> CNAME VARCHAR(10),
+    -> CITY VARCHAR(10),
+    -> RATING INT(4),
+    -> Snum INT(4),
+    -> FOREIGN KEY (Snum) REFERENCES SALESPEOPLE(Snum)
+    -> );
+ERROR 1822 (HY000): Failed to add the foreign key constraint. Missing index for constraint 'CUSTOMERS_ibfk_1' in the referenced table 'SALESPEOPLE'
+D5_Ved_83794>DROP ^C
+D5_Ved_83794>DROP TABLE SALESPEOPLE;
+Query OK, 0 rows affected (0.01 sec)
+
+D5_Ved_83794>SHOW TABLES;
++---------------------+
+| Tables_in_Exercise1 |
++---------------------+
+| PARTS               |
+| PROJECTS            |
+| SDEPT               |
+| SEMP                |
+| SPJ                 |
+| SUPPLIER            |
++---------------------+
+6 rows in set (0.01 sec)
+
+D5_Ved_83794>CREATE TABLE SALESPEOPLE (
+    -> Snum INT(4),
+    -> Sname VARCHAR(10),
+    -> City  VARCHAR(10),
+    -> Comm FLOAT(3.2),
+    -> PRIMARY KEY(Snum)
+    -> );
+Query OK, 0 rows affected, 1 warning (0.03 sec)
+
+D5_Ved_83794>CREATE TABLE CUSTOMERS(
+    -> CNUM INT(4),
+    -> CNAME VARCHAR(10),
+    -> CITY VARCHAR(10),
+    -> RATING INT(4),
+    -> Snum INT(4),
+    -> FOREIGN KEY (Snum) REFERENCES SALESPEOPLE(Snum)
+    -> );
+Query OK, 0 rows affected, 3 warnings (0.03 sec)
+
+D5_Ved_83794>DROP TABLE CREATE TABLE CUSTOMERS(
+    -> CNUM INT(4),
+    -> CNAME VARCHAR(10),
+    -> CITY VARCHAR(10),
+    -> RATING INT(4),
+    -> Snum INT(4),
+    -> FOREIGN KEY (Snum) REFERENCES SALESPEOPLE(Snum)
+    -> );^C
+D5_Ved_83794>DROP TABLE CUSTOMERS;
+Query OK, 0 rows affected (0.02 sec)
+
+D5_Ved_83794>CREATE TABLE CUSTOMERS(
+    -> CNUM INT(4),
+    -> CNAME VARCHAR(10),
+    -> CITY VARCHAR(10),
+    -> RATING INT(4),
+    -> Snum INT(4),
+    -> PRIMARY KEY(CNUM),
+    -> FOREIGN KEY (Snum) REFERENCES SALESPEOPLE(Snum)
+    -> );
+Query OK, 0 rows affected, 3 warnings (0.02 sec)
+
+D5_Ved_83794>CREATE TABLE ORDERS(
+    -> Onum INT(4),
+    -> Amt FLOAT(7.2),
+    -> Odate DATE,
+    -> Cnum INT(4),
+    -> Snum INT(4),
+    -> FOREIGN KEY (CNUM) REFERENCES CUSTOMERS(CNUM),
+    -> FOREIGN KEY (Snum) REFERENCES SALESPEOPLE(Snum)
+    -> );
+Query OK, 0 rows affected, 3 warnings (0.04 sec)
+
+D5_Ved_83794>INSERT INTO SALESPEOPLE(Snum,Sname,City,Comm,PRIMARY) VALUES 
+    -> ('1001','PEEL','LONDON', 0.12),
+    -> ('1002','SERRES','SAN JOSE', 0.13),
+    -> ('1004','MOTIKA','LONDON',0.11),
+    -> ('1007','RIFKIN','BARCELONA',0.15),
+    -> ('1003','AXELROD','NEW YORK', 0.10);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'PRIMARY) VALUES 
+('1001','PEEL','LONDON', 0.12),
+('1002','SERRES','SAN JOSE', 0.' at line 1
+D5_Ved_83794>)INSERT INTO SALESPEOPLE(Snum,Sname,City,Comm,PRIMARY) VALUES 
+    -> ('1001','PEEL','LONDON', 0.12),
+    -> ('1002','SERRES','SAN JOSE', 0.13),
+    -> ('1004','MOTIKA','LONDON',0.11),
+    -> ('1007','RIFKIN','BARCELONA',0.15),
+    -> ('1003','AXELROD','NEW YORK', 0.10);^C
+D5_Ved_83794>INSERT INTO SALESPEOPLE(Snum,Sname,City,Comm) VALUES 
+    -> ('1001','PEEL','LONDON', 0.12),
+    -> ('1002','SERRES','SAN JOSE', 0.13),
+    -> ('1004','MOTIKA','LONDON',0.11),
+    -> ('1007','RIFKIN','BARCELONA',0.15),
+    -> ('1003','AXELROD','NEW YORK', 0.10);
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+D5_Ved_83794>INSERT INTO CUSTOMERS(CNUM,CNAME,CITY,RATING,Snum) VALUES 
+    -> (2001,'Hoffman','LONDON',100,1001),
+    -> (2002,'Giovanni','Rome',200,1003),
+    -> (2003,'Liu','San Jose' , 200 ,1002),
+    -> (2004 ,'GRASS','Berlin',300,1002),
+    -> (2006,'Clemens','LONDON',100,1001),
+    -> (2008,'Cisneros','SAN JOSE',300,1007),
+    -> (2007,'Pereira','ROME',100,1004);
+Query OK, 7 rows affected (0.01 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+D5_Ved_83794>INSERT INTO ORDERS(Onum,Amt,Odate,Cnum,Snum) VALUES
+    -> (3001,18.69,'1990-10-03',2008,1007),
+    -> (3003,767.19,'1990-10-03',2001,1001),
+    -> (3002,1900.10,'1990-10-03',2007,1004),
+    -> (3005,5160.45,'1990-10-03',2003,1002),
+    -> (3006,1098.16,'1990-10-03',2008,1007),
+    -> (3009,1713.23.'1990-10-04',2002,1003),
+    -> (3007,75.75,'1990-10-04',2004,1002),
+    -> (3008,4723.00,'1990-10-05',2006,1001),
+    -> (3010,1309.95,'1990-10-06',2004,1002),
+    -> (3011,9891.88,'1990-10-06',2006,1001);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.'1990-10-04',2002,1003),
+(3007,75.75,'1990-10-04',2004,1002),
+(3008,4723.00,'19' at line 7
+D5_Ved_83794>INSERT INTO ORDERS(Onum,Amt,Odate,Cnum,Snum) VALUES
+    -> (3001,18.69,'1990-10-03',2008,1007),
+    -> (3003,767.19,'1990-10-03',2001,1001),
+    -> (3002,1900.10,'1990-10-03',2007,1004),
+    -> (3005,5160.45,'1990-10-03',2003,1002),
+    -> (3006,1098.16,'1990-10-03',2008,1007),
+    -> (3009,1713.23,'1990-10-04',2002,1003),
+    -> (3007,75.75,'1990-10-04',2004,1002),
+    -> (3008,4723.00,'1990-10-05',2006,1001),
+    -> (3010,1309.95,'1990-10-06',2004,1002),
+    -> (3011,9891.88,'1990-10-06',2006,1001);
+Query OK, 10 rows affected (0.02 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+D5_Ved_83794>SELECT * FROM ORDERS;
++------+---------+------------+------+------+
+| Onum | Amt     | Odate      | Cnum | Snum |
++------+---------+------------+------+------+
+| 3001 |   18.69 | 1990-10-03 | 2008 | 1007 |
+| 3003 |  767.19 | 1990-10-03 | 2001 | 1001 |
+| 3002 |  1900.1 | 1990-10-03 | 2007 | 1004 |
+| 3005 | 5160.45 | 1990-10-03 | 2003 | 1002 |
+| 3006 | 1098.16 | 1990-10-03 | 2008 | 1007 |
+| 3009 | 1713.23 | 1990-10-04 | 2002 | 1003 |
+| 3007 |   75.75 | 1990-10-04 | 2004 | 1002 |
+| 3008 |    4723 | 1990-10-05 | 2006 | 1001 |
+| 3010 | 1309.95 | 1990-10-06 | 2004 | 1002 |
+| 3011 | 9891.88 | 1990-10-06 | 2006 | 1001 |
++------+---------+------------+------+------+
+10 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT * FROM SALESPEOPLE;
++------+---------+-----------+------+
+| Snum | Sname   | City      | Comm |
++------+---------+-----------+------+
+| 1001 | PEEL    | LONDON    | 0.12 |
+| 1002 | SERRES  | SAN JOSE  | 0.13 |
+| 1003 | AXELROD | NEW YORK  |  0.1 |
+| 1004 | MOTIKA  | LONDON    | 0.11 |
+| 1007 | RIFKIN  | BARCELONA | 0.15 |
++------+---------+-----------+------+
+5 rows in set (0.00 sec)
+
+D5_Ved_83794>SELECT * FROM CUSTOMERS;
++------+----------+----------+--------+------+
+| CNUM | CNAME    | CITY     | RATING | Snum |
++------+----------+----------+--------+------+
+| 2001 | Hoffman  | LONDON   |    100 | 1001 |
+| 2002 | Giovanni | Rome     |    200 | 1003 |
+| 2003 | Liu      | San Jose |    200 | 1002 |
+| 2004 | GRASS    | Berlin   |    300 | 1002 |
+| 2006 | Clemens  | LONDON   |    100 | 1001 |
+| 2007 | Pereira  | ROME     |    100 | 1004 |
+| 2008 | Cisneros | SAN JOSE |    300 | 1007 |
++------+----------+----------+--------+------+
+7 rows in set (0.00 sec)
+
+
+
+--------------------------------------------------------------------------------------------------------
+						ASSIGNMENT 2
+--------------------------------------------------------------------------------------------------------
+
+
+1) Which field of the Customers table is the primary key?
+=> IN CUSTOMER TABLE cnum is the primary key.
+
+
+2) What is the 4th column of the Customers table?
+=> 4th column of customers table is Raiting.
+
+3) What is another word for row?For column?
+=> for row another word is Tuple & for column is Attribute.
+
+
+4) Why isn’t it possible to see the first five rows of a table?
+=> 
+
+
+
+
+
+
+

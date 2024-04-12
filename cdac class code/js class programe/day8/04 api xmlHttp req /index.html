@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <center>
+
+        Search: <input type="text" name="" id="s1">
+        <button onclick="fun()" id="bt1">Seacrh</button>
+        <table border="1px">
+            <thead>
+                    <td>Drink Id</td>
+                    <td>Drink Name</td>
+                    <td>Drink Receipe</td>
+                    <td>Image of Drink</td>
+            </thead>
+
+            <tbody id="b1">
+               
+            </tbody>
+        </table>
+    </center>
+
+    <script>
+
+       function fun() {
+           let search = document.getElementById('s1')
+           let S   = search.value
+           let a = document.getElementById('b1')
+           let getdata = new XMLHttpRequest()
+    
+           getdata.onreadystatechange = function () {
+
+               if(getdata.status == 200 && getdata.readyState == 4){
+    
+                  
+                //    console.log(getdata.responseText)
+                   let data = JSON.parse(getdata.responseText)
+                   console.log(data)
+                   let dataf = data.drinks;
+                   console.log(dataf)
+
+                   a.innerHTML = ""
+
+                if(dataf.length > 0){
+                    for (let i = 0; i < dataf.length; i++) {
+                       const element = dataf[i];
+                       
+                       let row = ` 
+                                        <td>${dataf[i].idDrink}</td>
+                                        <td>${dataf[i].strDrink}</td>
+                                        <td>${dataf[i].strInstructions}</td>
+                                        <td><img src=${dataf[i].strDrinkThumb} width="100px" height="100px"/></td>
+                                  `
+                        a.innerHTML = a.innerHTML + row          
+                   }
+
+                }else{
+                    alert("No Record Found")
+                }                   
+               }
+          
+           }
+    
+           getdata.open('GET','https://www.thecocktaildb.com/api/json/v1/1/search.php?s='+S)
+    
+           getdata.send()
+       }
+
+
+    </script>
+</body>
+</html>
+
+
+
+

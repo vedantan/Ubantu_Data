@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div style="display:flexbox">
+
+         <h5>Name:</h5><input type="text" value="name">
+      
+
+         <h5>Address :</h5><input type="text" value="add">
+        <br/>
+        <br/>
+
+
+        <h5>mobile no :</h5><input type="text" value="mob">
+        <br/>
+        <br/>
+
+        <h5>city</h5><input type="text" value="city">
+        <br/>
+        <br/>
+
+        <input type="button" value="click me!">
+    </div>
+
+
+    <script>
+      var allInputObjects = document.getElementsByTagName("input");
+
+      for (let i = 0; i < allInputObjects.length; i++) {
+        let refToInput = allInputObjects[i];
+        
+        if (refToInput.type == "text") {
+            refToInput.style.backgroundColor = "gray";
+            refToInput.style.color = "white";
+          }
+      }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <table border="1px">
+            <thead>
+                <td>Sr_no</td>
+                <td>Name</td>
+                <td>Address</td>
+                <td>Image</td>
+            </thead>
+            <tbody id="b1">
+                
+                
+            </tbody>
+        </table>
+    </center>
+
+
+
+    <script>
+
+        let b = [{
+          No: 1,
+          Name: "Sachin",
+          Address: "Pune",
+          Photo: "sachin.jpeg",
+        },
+        {
+          No: 2,
+          Name: "Rahul",
+          Address: "Banglore",
+          Photo: "rahul.jpeg",
+        },
+        {
+          No: 3,
+          Name: "Sourav",
+          Address: "Kolkata",
+          Photo: "sourav.jpeg",
+        },
+      ];
+
+        let a = document.getElementById('b1')
+
+        // let row = `<tr>
+        //             <td>${b[0].No}</td>
+        //             <td>${b[0].Name}</td>
+        //             <td>${b[0].Address}</td>
+        //             <td><img src=${b[0].Photo} /></td>
+        //         </tr>
+        //         <tr>
+        //             <td>${b[1].No} </td>
+        //             <td>${b[1].Name}</td>
+        //             <td>${b[1].Address}</td>
+        //             <td><img src=${b[0].Photo} /></td>
+        //         </tr>
+        //         <tr>
+        //             <td>${b[2].No}</td>
+        //             <td>${b[2].Name}</td>
+        //             <td>${b[2].Address}</td>
+        //             <td><img src=${b[2].Photo} /></td>
+        //         </tr>`
+        //
+        //          a.innerHTML = row
+                
+
+                for (let i = 0; i < b.length; i++) {
+                    debugger;
+                    let row = 
+                `<tr>
+                    <td>${b[i].No}</td>
+                    <td>${b[i].Name}</td>
+                    <td>${b[i].Address}</td>
+                    <td><img src=${b[i].Photo} /></td>
+                </tr>`
+                    debugger;
+                    a.innerHTML = a.innerHTML + row
+                    
+                }
+                
+          
+
+                
+    </script>
+
+
+
+    
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <h1>Change photo </h1>
+
+        <div id="im1">
+
+            <img src="img20.jpg" alt="1st photo" height="200px" width="200px" id="i1">
+        </div>
+
+        <button onclick="chg()">change Image</button>
+        
+
+
+    </center>
+
+    <script>
+
+        let flag = true
+        let a = document.getElementById('i1')
+        
+        function chg() {
+            
+            if(flag == true){
+                a.src="img28.jpg"
+                flag=false
+            }else {
+          a.src = "img20.jpg";
+          flag = true;
+        }
+
+        }
+
+
+    </script>
+</body>
+</html>
+
+
+<!-- var refToImage = document.getElementById("myImage");
+if (flag == true) {
+  refToImage.src = "img28.jpg";
+  flag = false;
+} else {
+  refToImage.src = "img20.jpg";
+  flag = true;
+} -->

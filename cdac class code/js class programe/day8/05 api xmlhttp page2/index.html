@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <center>
+        Search: <input type="text" id="inp1">
+        <br/>
+        <br/>
+        <br/>
+
+        <button onclick="fun()">Get Data</button>
+        <input type="button" id="page2" value="Page2" onclick="p2()">
+        <button onclick="re()">Refresh</button>
+
+        <br/>
+        <br/>
+        <br/>
+
+        Total Result Found: <input type="text" id="resFound">
+
+        <br/>
+        <br/>
+        <br/>
+
+
+        <table border="1px" style="border-collapse: collapse;">
+            <thead>
+                <tr>
+                    <td>Drink Id</td>
+                    <td>Drink Name</td>
+                    <td>Drink Receipe</td>
+                    <td>Image of Drink</td>
+                </tr>
+            </thead>
+
+            <tbody id="body1">
+                
+            </tbody>
+        </table>
+    </center>
+
+
+    <script >
+
+        function re() {
+            window.location.reload()
+        }
+
+        function fun() {
+
+        let aa = document.getElementById('inp1')
+        let aadata = aa.value;
+
+        let res = document.getElementById('resFound')
+        
+        let bodyIn = document.getElementById('body1')
+
+
+        let getdata = new XMLHttpRequest();
+
+        getdata.onreadystatechange = function () {
+
+       
+                
+            if(getdata.status == 200 && getdata.readyState == 4){
+
+                let data = JSON.parse(getdata.responseText)
+                // console.log(data)
+               
+                let dataf = data.drinks;
+                // console.log(dataf)
+                console.log(dataf.length)
+
+                let counter = 0;
+
+                bodyIn.innerHTML = ""
+
+                if(dataf.length > 0) {
+
+                    for (let i = 0; i < dataf.length/2; i++) {
+                    const element = dataf[i];
+
+                    counter++;
+                    let row = `<tr>
+                                     <td>${dataf[i].idDrink}</td>
+                                     <td>${dataf[i].strDrink}</td>
+                                     <td>${dataf[i].strInstructions}</td>
+                                     <td><img src=${dataf[i].strDrinkThumb} width="100px" height="100px"/></td>
+                               </tr>`
+                    
+                        bodyIn.innerHTML = bodyIn.innerHTML + row
+                }
+
+                res.value = counter+" results found";
+
+                }else{
+                    alert("No Result Found")
+                }
+
+                
+            }
+        }
+
+        getdata.open('GET','https://www.thecocktaildb.com/api/json/v1/1/search.php?s='+aadata)
+        getdata.send();
+
+    }
+
+
+
+    function p2() {
+        let aa = document.getElementById('inp1')
+        let aadata = aa.value;
+
+        let res = document.getElementById('resFound')
+        
+        let bodyIn = document.getElementById('body1')
+        
+
+
+        let getdata = new XMLHttpRequest();
+
+        getdata.onreadystatechange = function () {
+
+       
+                
+            if(getdata.status == 200 && getdata.readyState == 4){
+
+                let data = JSON.parse(getdata.responseText)
+                // console.log(data)
+               
+                let dataf = data.drinks;
+                // console.log(dataf)
+                console.log(dataf.length)
+
+                let counter = 0;
+
+                bodyIn.innerHTML = ""
+
+                if(dataf.length > 0) {
+
+                    for (let i = dataf.length/2; i < dataf.length; i++) {
+                    const element = dataf[i];
+
+                    console.log(dataf)
+
+                    counter++;
+                    let row = `<tr>
+                                     <td>${dataf[i].idDrink}</td>
+                                     <td>${dataf[i].strDrink}</td>
+                                     <td>${dataf[i].strInstructions}</td>
+                                     <td><img src=${dataf[i].strDrinkThumb} width="100px" height="100px"/></td>
+                               </tr>`
+                    
+                        bodyIn.innerHTML = bodyIn.innerHTML + row
+                }
+
+                res.value = counter+" results found";
+
+                }else{
+                    alert("No Result Found")
+                }
+
+                
+            }
+        }
+
+        getdata.open('GET','https://www.thecocktaildb.com/api/json/v1/1/search.php?s='+aadata)
+        getdata.send();
+
+    }
+
+    
+
+    </script>
+
+</body>
+</html>
+
+
+
+<!-- let p2 = function p22(){
+
+    for (let j = dataf.length/2; j < dataf.length; j++) {
+        const element = dataf[j];
+        counter++;
+
+        let row = `<tr>
+                     <td>${dataf[i].idDrink}</td>
+                     <td>${dataf[i].strDrink}</td>
+                     <td>${dataf[i].strInstructions}</td>
+                     <td><img src=${dataf[i].strDrinkThumb} width="100px" height="100px"/></td>
+               </tr>`
+    
+        bodyIn.innerHTML = bodyIn.innerHTML + row
+
+    }  -->

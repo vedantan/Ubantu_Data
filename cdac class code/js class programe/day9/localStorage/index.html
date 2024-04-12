@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Name: <input type="text" id="n">
+    Age: <input type="text" id="a">
+
+    <button onclick="fun()">Store Data</button>
+
+    <script>
+        
+        function fun() {
+            let a = document.getElementById('n')
+            let b  = document.getElementById('a')
+            window.localStorage.setItem("name",a.value)
+            window.localStorage.setItem("age",b.value)
+
+        }
+    </script>
+</body>
+</html>

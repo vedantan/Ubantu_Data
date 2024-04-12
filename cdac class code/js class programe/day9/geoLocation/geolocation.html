@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <center>
+
+        Lat: <input type="text" value="lat" id="l1">
+        long: <input type="text" value="long" id="l2">
+        <button onclick="fun()">Get Location</button>
+        <br/>
+        <hr/>
+        <div id="div1" style="width: 100%;height: 50px;background-color: antiquewhite;"></div>
+
+    </center>
+
+
+    <script>
+
+        let a = document.getElementById('l1')
+        let b = document.getElementById('l2')
+        
+        let d = document.getElementById('div1')
+        
+        function fun() {
+            navigator.geolocation.getCurrentPosition(Onsuccess , OnFailure)
+        }
+    
+        function Onsuccess(re){                              // asyncronous
+            d.innerHTML = "";
+               a.value = re.coords.latitude
+               b.value = re.coords.longitude
+               let anchor = `<a href="http://latlong.net/c/?lat=${re.coords.latitude}&long=${re.coords.longitude}" target="_abc">See-Map</a>`
+               d.innerHTML = anchor
+  
+        }
+    
+        function OnFailure() {
+            alert("Something Went wrong")
+        }
+
+    </script>
+</body>
+</html>

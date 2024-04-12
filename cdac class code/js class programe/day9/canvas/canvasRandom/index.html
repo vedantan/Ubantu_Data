@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="getCanvasDrawing" onclick="fun()">
+    <br/>
+    <hr/>
+    <canvas id="can1" style="width: 400px;height: 400px;background-color: aqua;color: red;">
+
+    </canvas>
+
+
+
+    <script>
+        let x=0;
+        let y=0;
+        let x1 ,y1
+
+        function fun() {
+            setInterval(fun1,100)
+        }
+
+        function fun1(){
+
+            // console.log(x)
+            // console.log(y)
+            
+            // let x1 = Math.floor(Math.random()*100)
+            x1 = x+10
+            let y1 = Math.floor(Math.random()*100)
+            // console.log(x1)
+            // console.log(y1)
+            let a = document.getElementById('can1')
+            let context = a.getContext("2d")
+            context.moveTo(x,y)
+            context.lineTo(x1,y1)
+            context.stroke()
+            x = x1
+            y = y1
+        }
+
+    </script>
+</body>
+</html>
